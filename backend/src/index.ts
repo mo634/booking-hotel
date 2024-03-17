@@ -1,5 +1,16 @@
 import express from "express"
 import cors from "cors"
+import {Request,Response} from "express"
+import "dotenv/config"
+import mongoose from "mongoose"
+
+
+// connect to database
+mongoose.connect(process.env.MONGO_URI as string)
+.then(() => console.log('MongoDB connected...'))
+    .catch(err => console.log(err));
+
+    
 const app = express()
 
 
@@ -12,7 +23,7 @@ app.use(express.urlencoded({extended:true}))
 // select wich client can ask your server for sources 
 app.use(cors())
 
-app.get("/api/test",(req,res) => {
+app.get("/api/test",(req:Request,res:Response) => {
     res.send("hello from express")
 })
 
