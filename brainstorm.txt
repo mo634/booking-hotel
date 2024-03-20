@@ -1,0 +1,6 @@
+1.create layout ->contain common comp
+
+2. create common components  (header , hero ,children (route) , footer )
+
+3. include layout on routes 
+
