@@ -29,4 +29,21 @@ app.get("/api/test",(req:Request,res:Response) => {
 
 app.use("/api/auth",authRouter)
 
+// user middleware to handle errors 
+
+app.use((err:any,req:Request,res:Response,next:Function) => {
+
+    const status = err.statusCode || 500
+
+    const message = err.message || "Something went wrong"
+
+    res.status(status).json({
+        
+        success:false,
+        status
+        ,message
+    })
+
+})
+
 app.listen(5000, () => console.log("server is running on port 5000"))
